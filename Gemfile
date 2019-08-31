@@ -10,6 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 gem 'fast_jsonapi'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -33,6 +34,7 @@ gem 'activerecord-import'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 

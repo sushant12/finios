@@ -3,9 +3,9 @@ class FlightsController < ApplicationController
 
   # GET /flights
   def index
-    @flights = Flight.all
-
-    render json: @flights
+    build_search_params
+    @flights = Flight.ransack(params[:q]).result
+    render json: FlightsSerializer.new(@flights)
   end
 
   # GET /flights/1
@@ -47,5 +47,17 @@ class FlightsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def flight_params
       params.fetch(:flight, {})
+    end
+
+    def build_search_params
+      params[:q] = search_params
+    end
+
+    def search_params
+      {
+        from_eq: params[:from],
+        to_eq: params[:to],
+        date_eq: params[:date]
+      }
     end
 end
